@@ -171,31 +171,36 @@ question_pool = [
     },
     {
         "question": "有關 IATA 航空公司代號及該航空公司所屬國籍之配對（前為航空公司代號、後為航空公司國籍），下列何組錯誤？",
-        "options": ['DL、美國', 'NH、日本', 'QH、越南'],
-        "answer": ""
+        "options": ['DL、美國', 'NH、日本', 'QH、越南','QF、卡達'],
+        "answer": "QF、卡達"
     },
     {
-        "question": "D.QF、卡達",
-        "options": ['CPH', 'HAM', 'HAN 下列旅客機票票種之英文縮寫，何者表示「團體旅遊票」？', 'MXP'],
-        "answer": "HAN 下列旅客機票票種之英文縮寫，何者表示「團體旅遊票」？"
+        "question": "下列那個機場代碼，其所在地不在歐洲地區？",
+        "options": ['CPH', 'HAM', 'HAN', 'MXP'],
+        "answer": "HAN"
     },
+     {
+	"question": "下列旅客機票票種之英文縮寫，何者表示「團體旅遊票」？",
+        "options": ['GV', 'CG', 'DG', 'SD'],
+        "answer": "HAN"
+     },
     {
-        "question": "A.GV",
+        "question": "依據我國「民用航空法」規定，航空公司對乘客隨身行李賠償之責任，每位乘客最高不得超過新臺幣多少元？",
         "options": ['二萬元', '三萬元', '四萬元', '一萬元'],
         "answer": "一萬元"
     },
     {
         "question": "對於不占座位的嬰兒旅客，通常會以下列何者訂位狀態代碼表示？",
-        "options": ['P', 'S', 'NS', 'OPEN'],
+        "options": ['PB', 'SA', 'NS', 'OPEN'],
         "answer": "S"
     },
     {
         "question": "有關公共場所自動體外電擊去顫器（Automated External Defibrillator, AED）之操作，下列何者正確？",
-        "options": ['聽到 AE', '會自動偵測被施救者心律，只有需要電擊時才會指示電擊', '若病人體內裝有人工心臟節律器就不能使用 AE', 'AE'],
-        "answer": "AE"
+        "options": ['聽到AED發出電擊指示，應立即按電擊按鈕','若病人體內裝有人工心臟節律器就不能使用AED', 'AED會自動偵測被施救者心律，只有需要電擊時才會指示電擊', '需由醫護人員來操作使用較安全'],
+        "answer": "聽到AED發出電擊指示，應立即按電擊按鈕","AED會自動偵測被施救者心律，只有需要電擊時才會指示電擊"
     },
     {
-        "question": "D.需由醫護人員來操作使用較安全",
+        "question": "檢查手指指甲微血管充填時間（Capillaryrefilltime,CRT），正常應在幾秒內恢復？",
         "options": ['2 秒', '3 秒', '4 秒', '5 秒'],
         "answer": "4 秒"
     },
