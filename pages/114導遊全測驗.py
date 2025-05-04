@@ -4,8 +4,11 @@ import random
 # 導入題庫
 from streamlit_題庫 import question_pool
 
-# 設定題目數
-num_questions = min(50, len(question_pool))
+# 確認題庫的數量
+total_questions = len(question_pool)
+
+# 設定題目數，確保不會超過題庫中的題目數量
+num_questions = min(50, total_questions)
 
 # 頁面設定
 st.set_page_config(page_title="114導遊實務", layout="wide")
