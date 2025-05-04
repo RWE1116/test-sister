@@ -30,11 +30,11 @@ question_pool = [
     },
     {
         "question": "下列何種解說方式不適合運用在規劃自導式步道解說？",
-        "options": ["解說摺頁", "解說牌", "錄音解說", " 影片解說"],
-        "answer": " 影片解說"
+        "options": ["解說摺頁", "解說牌", "錄音解說", "影片解說"],
+        "answer": "影片解說"
     },
     {
-        "question": " 一般在旅遊景點聆聽導覽解說的遊客多是所謂的非受制聽眾（Non-captiveaudiences），有關非受制聽眾的特徵，下列敘述何者錯誤？",
+        "question": "一般在旅遊景點聆聽導覽解說的遊客多是所謂的非受制聽眾（Non-captive audiences），有關非受制聽眾的特徵，下列敘述何者錯誤？",
         "options": ["不需對時間做承諾", "自願前來聆聽", "必定專注學習", "額外獎勵不重要"],
         "answer": "必定專注學習"
     }
@@ -43,7 +43,7 @@ question_pool = [
 # 頁面設定
 st.set_page_config(page_title="即時抽考測驗", layout="wide")
 st.title("🎯 即時抽考：選擇題測驗")
-st.write("每次隨機抽出 5 題，作答完畢後點擊下方「提交答案」按鈕進行評分。")
+st.write("每次隨機抽出 5 題，作答完畢後點擊下方「✅ 提交答案」按鈕進行評分。")
 
 # 初始化 session 狀態
 if "quiz" not in st.session_state:
@@ -57,27 +57,33 @@ for i, q in enumerate(st.session_state.quiz):
     selected = st.radio(
         label="請選擇一個答案：",
         options=q["options"],
-        key=f"q{i}"
+        key=f"q{i}",
+        index=-1  # 預設不選
     )
     st.session_state.answers[i] = selected
 
 # 提交並評分
 if st.button("✅ 提交答案並評分"):
-    score = 0
-    st.subheader("🎓 評分結果")
-    for i, q in enumerate(st.session_state.quiz):
-        user_answer = st.session_state.answers[i]
-        correct = q["answer"]
-        if user_answer == correct:
-            st.success(f"第 {i+1} 題：答對了！✅（你的答案：{user_answer}）")
-            score += 1
-        else:
-            st.error(f"第 {i+1} 題：答錯了 ❌（你的答案：{user_answer}，正確答案：{correct}）")
+    incomplete = any(ans == "" or ans is None for ans in st.session_state.answers.values())
 
-    st.markdown(f"## 🎉 你的總分：{score} / 5")
+    if incomplete:
+        st.warning("⚠️ 請完成所有題目後再提交。")
+    else:
+        score = 0
+        st.subheader("🎓 評分結果")
+        for i, q in enumerate(st.session_state.quiz):
+            user_answer = st.session_state.answers[i].strip()
+            correct = q["answer"].strip()
+            if user_answer == correct:
+                st.success(f"第 {i+1} 題：答對了！✅（你的答案：{user_answer}）")
+                score += 1
+            else:
+                st.error(f"第 {i+1} 題：答錯了 ❌（你的答案：{user_answer}，正確答案：{correct}）")
 
-    # 重設按鈕
-    if st.button("🔄 再來一次"):
-        st.session_state.quiz = random.sample(question_pool, 5)
-        st.session_state.answers = {}
-        st.experimental_rerun()
+        st.markdown(f"## 🎉 你的總分：{score} / 5")
+
+        # 提供重新測驗按鈕
+        if st.button("🔄 再來一次"):
+            st.session_state.quiz = random.sample(question_pool, 5)
+            st.session_state.answers = {}
+            st.experimental_rerun()
