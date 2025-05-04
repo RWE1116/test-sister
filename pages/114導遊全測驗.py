@@ -31,6 +31,10 @@ if st.button("✅ 提交答案並評分"):
         st.warning("⚠️ 請完成所有題目後再提交。")
     else:
         score = 0
+        correct_answers = []
+        wrong_answers = []
+
+        # 評分並顯示結果
         st.subheader("🎓 評分結果")
         for i, q in enumerate(st.session_state.quiz):
             user_answer = st.session_state.answers[i]
@@ -38,9 +42,23 @@ if st.button("✅ 提交答案並評分"):
             if user_answer == correct_answer:
                 st.success(f"第 {i+1} 題：答對了！✅（你的答案：{user_answer}）")
                 score += 2
+                correct_answers.append(f"第 {i+1} 題：{user_answer}")
             else:
                 st.error(f"第 {i+1} 題：答錯了 ❌（你的答案：{user_answer}，正確答案：{correct_answer}）")
+                wrong_answers.append(f"第 {i+1} 題：你的答案：{user_answer}，正確答案：{correct_answer}")
+
         st.markdown(f"## 🎉 你的總分：{score} / {num_questions * 2}")
+
+        # 顯示正確答案與錯誤答案
+        if correct_answers:
+            st.markdown("### ✅ 正確答案：")
+            for answer in correct_answers:
+                st.write(answer)
+
+        if wrong_answers:
+            st.markdown("### ❌ 錯誤答案：")
+            for answer in wrong_answers:
+                st.write(answer)
 
         if st.button("🔄 再來一次"):
             st.session_state.quiz = question_pool[:num_questions]
