@@ -1,0 +1,1 @@
+ streamlit run template.py
