@@ -25,7 +25,7 @@ st.subheader("相關資料下載")
 base_path = "downloads"  # 假設所有的文件都放在此文件夾
 
 # 下載文件1 (114年度下載資料)
-download_file(os.path.join(base_path, "1301A_領隊_華外語_實務.pdf"), "下載 1301A_領隊_華外語_實務.pdf", "application/pdf", "1301A_領隊_華外語_實務.pdf", "key1")
-download_file(os.path.join(base_path, "1301Q_領隊_華外語_實務.pdf"), "1301Q_領隊_華外語_實務.pdf", "application/pdf", "1301Q_領隊_華外語_實務.pdf", "key2")
 
+download_file(os.path.join(base_path, "1301Q_領隊_華外語_實務.pdf"), "下載 題目 1301Q_領隊_華外語_實務.pdf", "application/pdf", "1301Q_領隊_華外語_實務.pdf", "key1")
+download_file(os.path.join(base_path, "1301A_領隊_華外語_實務.pdf"), "下載 答案 1301A_領隊_華外語_實務.pdf", "application/pdf", "1301A_領隊_華外語_實務.pdf", "key2")
 
