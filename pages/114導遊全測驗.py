@@ -1,14 +1,10 @@
 import streamlit as st
-import random
 
 # 導入題庫
 from streamlit_題庫 import question_pool
 
-# 確認題庫的數量
-total_questions = len(question_pool)
-
-# 設定題目數，確保不會超過題庫中的題目數量
-num_questions = min(50, total_questions)
+# 設定題目數
+num_questions = min(50, len(question_pool))
 
 # 頁面設定
 st.set_page_config(page_title="114導遊實務", layout="wide")
@@ -17,7 +13,8 @@ st.write(f"作答完畢後點擊下方「✅ 提交答案」按鈕進行評分�
 
 # 初始化 session 狀態
 if "quiz" not in st.session_state:
-    st.session_state.quiz = random.sample(question_pool, num_questions)
+    # 直接選擇題庫的前 num_questions 題
+    st.session_state.quiz = question_pool[:num_questions]
     st.session_state.answers = {}
 
 # 顯示每一題
@@ -46,6 +43,6 @@ if st.button("✅ 提交答案並評分"):
         st.markdown(f"## 🎉 你的總分：{score} / {num_questions * 2}")
 
         if st.button("🔄 再來一次"):
-            st.session_state.quiz = random.sample(question_pool, num_questions)
+            st.session_state.quiz = question_pool[:num_questions]
             st.session_state.answers = {}
             st.experimental_rerun()
